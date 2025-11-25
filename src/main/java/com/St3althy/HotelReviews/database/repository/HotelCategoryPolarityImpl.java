@@ -23,7 +23,7 @@ public class HotelCategoryPolarityImpl implements HotelCategoryPolarityRepositor
     @Override
     public HotelRecord findByHotelName(String name) {
         //:name is just a jdbc safe way of inserting the name, No SQL injection here baby
-        final String sql = "SELECT * FROM hotel_category_polarity WHERE name = :name";
+        final String sql = "SELECT * FROM hotel_category_polarity WHERE hotelname = :name";
 
         // Map the parameter
         Map<String, Object> params = new HashMap<>();

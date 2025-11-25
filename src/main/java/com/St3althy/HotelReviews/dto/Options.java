@@ -22,6 +22,7 @@ public class Options {
 
     private HotelAddress hotelAddress;
     private LocalDateTime localDateTime;
+    private String hotel;
 
     /**
      * Note: I did look up how to use multiple enum values like this and

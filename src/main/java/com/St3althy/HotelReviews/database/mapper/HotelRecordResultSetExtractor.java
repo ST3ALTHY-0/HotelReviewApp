@@ -41,7 +41,7 @@ public class HotelRecordResultSetExtractor implements ResultSetExtractor<HotelRe
             if (cat != null) {
                 try {
                     RatingCategory r = RatingCategory.valueOf(cat.trim().toUpperCase());
-                    float raw = rs.getFloat("totalPolarity");
+                    float raw = rs.getFloat("normalizedPolarity");
                     Float score = rs.wasNull() ? null : Float.valueOf(raw);
                     //put the RatingCategory and score in the hotelRecord.Rating map
                     hotelRecord.getRating().put(r, score);

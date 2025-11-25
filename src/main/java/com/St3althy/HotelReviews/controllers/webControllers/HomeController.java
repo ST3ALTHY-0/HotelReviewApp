@@ -46,7 +46,7 @@ public class HomeController {
         Set<String> countries = new LinkedHashSet<>();
         Set<String> regions = new LinkedHashSet<>();
         Set<String> cities = new LinkedHashSet<>();
-        List<String> hotelNames = new ArrayList<>();
+        Set<String> hotelNames = new LinkedHashSet<>();
 
         for (HotelAddress h : hotels) {
             if (h.getCountry() != null) countries.add(h.getCountry());
@@ -64,21 +64,13 @@ public class HomeController {
         model.addAttribute("countries", countries);
         model.addAttribute("regions", regions);
         model.addAttribute("cities", cities);
-        model.addAttribute("hotelNames", limitedHotelNames);
+        model.addAttribute("hotelNames", hotelNames);
         return "home";
     }
-    
+
     @GetMapping("/error")
     public String error() {
         return "error";
-    }
-
-    @PostMapping("/hotel-reviews/options/submit")
-    public String optionsSubmit(@ModelAttribute Options options, Model model) {
-        // TODO: process options and return a result in the model
-
-        model.addAttribute("results", null);
-        return "home";
     }
 
 }

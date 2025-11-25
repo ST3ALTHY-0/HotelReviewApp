@@ -24,11 +24,7 @@
         <a class="navbar-brand" href="#">HotelReviews</a>
     </nav>
 
-    <script>
-            const hotels = /*[[${hotels}]]*/ {};
-            			console.log('Hotel:', hotels[1]);
 
-    </script>
 
     <main class="py-4">
         <div class="container">
@@ -37,8 +33,8 @@
                     <div class="card mb-3">
                         <div class="card-header">Search Filters</div>
                         <div class="card-body">
-                            <!-- Default: form does a GET so backend can support server-side rendering if desired -->
-                            <form id="searchForm" method="get" action="/api/hotels/search">
+                            <!--  form does a GET and backend gets that sends back hotelRecord from db -->
+                            <form id="searchForm" method="get" action="/hotels/search/rating">
                                 <div class="form-group">
                                     <label for="country">Country</label>
                                     <select id="country" name="country" class="form-control">
@@ -63,15 +59,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="hotel">Hotel name</label>
+                                    <!-- searchable input to filter the hotel select -->
+                                    <input id="hotelSearch" type="text" class="form-control mb-2" placeholder="Type to search hotels..." />
                                     <select id="hotel" name="hotel" class="form-control">
                                         <option value="">Any (limited)</option>
-                    <option th:each="hn : ${hotelNames}" th:value="${hn}" th:text="${hn}"></option>
+                                        <option th:each="hn : ${hotelNames}" th:value="${hn}" th:text="${hn}"></option>
                                     </select>
                                 </div>
-
                                 <hr />
+
                                 <div class="form-group">
-                                    <label>Minimum ratings (optional)</label>
+                                    <label>Minimum ratings (optional) (NOT WORKING)</label>
                                     <div th:each="cat : ${ratingCategories}" class="mb-2">
                                         <label class="small" th:text="${cat}">Category</label>
                                         <input type="number" step="0.1" min="0" max="5"
@@ -108,5 +106,15 @@
     </footer>
 
 </body>
+
+<!-- A way to allow our JS to reference the data we passed through our backend with thymeleaf -->
+ <!-- Yeah i dont really get the syntax but it works -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var hotels = /*[[${hotels}]]*/[];
+
+    console.log("hotels:", hotels);
+    /*]]>*/
+</script>
 
 </html>

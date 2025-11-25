@@ -30,13 +30,15 @@ public class APIController {
 
     @GetMapping("/hotels/search/rating")
     public ResponseEntity<HotelRecord> searchHotelRatingByName(@ModelAttribute Options options) {
-        if (options == null || options.getHotelAddress() == null || options.getHotelAddress().getHotel() == null
-                || options.getHotelAddress().getHotel().isBlank()) {
+        if  (options.getHotel() == null) {
+                                System.out.println(options);
+
             throw new IllegalArgumentException("Hotel name is required");
         }
 
-        String hotelName = options.getHotelAddress().getHotel();
+        String hotelName = options.getHotel();
         HotelRecord result = hotelCategoryPolarityService.getHotelRecordByName(hotelName);
+        System.out.println("Result: " + result);
         return ResponseEntity.ok(result);
     }
 }

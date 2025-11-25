@@ -8,6 +8,6 @@ public enum RatingCategory {
 
     LOCATION,
     CLEANLINESS,
-    PRICE
-    
+    PRICE,
+    AMINITIES
 }
